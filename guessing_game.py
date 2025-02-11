@@ -24,6 +24,9 @@ def show_instructions():
           * Type 'New' to start over
           * Type 'Quit' to quit
           """)
+    
+def print_high_score():
+    print(f'\nCurrent High Score: {min(player_scores)}\n')
 
 # Player scores stores all scores from a player's active session
 player_scores = []
@@ -55,7 +58,10 @@ def start_game():
             print('\nThanks for playing.\n')
             break
         elif player_guess == 'new':
-            start_game()
+            num_of_guesses = 0
+            winning_number = set_winning_number()
+            if player_scores:
+                print_high_score()
         else:
             try:
                 # If the player's guess is an integer, check to ensure it's within the range
@@ -90,7 +96,7 @@ def start_game():
                     if play_again.lower() == 'y':
                         num_of_guesses = 0
                         winning_number = set_winning_number()
-                        print(f'\nCurrent High Score: {min(player_scores)}\n')
+                        print_high_score()
                     else:
                         print('\nThanks for playing!\n')
                         break
